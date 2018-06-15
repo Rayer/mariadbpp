@@ -7,9 +7,9 @@
 set(TEST_HOSTNAME "localhost" CACHE STRING "Hostname for mariadbpp tests")
 set(TEST_PORT 3306 CACHE INTEGER "Port for mariadbpp tests")
 set(TEST_UNIXSOCKET "" CACHE STRING "Unix socket for mariadbpp tests")
-set(TEST_USERNAME "testuser" CACHE STRING "Database username for mariadbpp tests")
-set(TEST_PASSWORD "bockwurst" CACHE STRING "Database username's password for mariadbpp tests")
-set(TEST_DATABASE "mariadbpptest" CACHE STRING "Database name for mariadbpp test")
+set(TEST_USERNAME "iris")
+set(TEST_PASSWORD "iris")
+set(TEST_DATABASE "iris_test")
 
 # write config to header in binary dir
 configure_file(test_config.h.in test_config.h)
@@ -33,7 +33,7 @@ if (GTEST_FOUND)
     add_executable(mariadbpp_tests ${mariadbclientpp_SOURCES} ${mariadbclientpp_PUBLIC_HEADERS}
                                         ${mariadbpp_tests_HEADERS} ${mariadbpp_tests_SOURCES})
 
-    target_link_libraries(mariadbpp_tests mariadbclientpp gtest_main)
+    target_link_libraries(mariadbpp_tests mariadbclientpp gtest_main mariadbclient)
 
     if (NOT WIN32 AND NOT ANDROID)
         include(CodeCoverage)
